@@ -10,16 +10,16 @@ Construi essa pequena pagina html para demonstrar como usar Javascript pra acess
 #Ferramenta de mapa:
 Para conseguir uma chave free basta executar o cadastro no site.
 https://developer.here.com
-------------------------------
+
 Chave free:
 App ID:
-HSWdRZNfGj5Jd5uT5xkp
+* HSWdRZNfGj5Jd5uT5xkp
 App Code:
-0MCGh0g5KdThHE_mfIYDMQ
-------------------------------
+* 0MCGh0g5KdThHE_mfIYDMQ
+
 Documentação da API:
-https://developer.here.com/documentation/maps/topics/markers.html
------------------------------
+* https://developer.here.com/documentation/maps/topics/markers.html
+
 
 
 

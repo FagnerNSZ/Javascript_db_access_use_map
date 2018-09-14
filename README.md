@@ -4,7 +4,7 @@ Construi essa pequena pagina html para demonstrar como usar Javascript pra acess
 
 #Requisitos:
 * ODBC(Configurar uma fonte de dados ODBC apontando pro arquivo 'db_teste.mdb')
-* Navegador Internet Explore (Abilitar execução de ActiveX)
+* Navegador Internet Explore (Habilitar execução de ActiveX)
 * Plataforma Windows
 * Descompactar na pasta C:/ 
 

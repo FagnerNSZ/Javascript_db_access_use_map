@@ -12,10 +12,10 @@ Para conseguir uma chave free basta executar o cadastro no site.
 https://developer.here.com
 
 Chave free:
-App ID:
-* HSWdRZNfGj5Jd5uT5xkp
-App Code:
-* 0MCGh0g5KdThHE_mfIYDMQ
+
+*App ID: HSWdRZNfGj5Jd5uT5xkp
+
+*App Code: 0MCGh0g5KdThHE_mfIYDMQ
 
 Documentação da API:
 * https://developer.here.com/documentation/maps/topics/markers.html

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <meta name="description" content="Open an infobubble when a marker is clicked">
+    <title>API-Map</title>
+    <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.0/mapsjs-ui.css" />
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-core.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-service.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
+  </head>
+<script>
+  var myConnect = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\\v_teste_map\\db_teste.mdb;Jet OLEDB:Database Password=123456";
+                                    var ConnectObj = new ActiveXObject("ADODB.Connection");
+                                    var RS = new ActiveXObject("ADODB.Recordset");
+                                    var sql = "SELECT  * FROM   map";
+                                    ConnectObj.Open (myConnect);
+                                    RS.Open(sql,ConnectObj);
+                                   // alert('Resultados encontrados: ' + RS.Fields.Count );
+                                   //  alert('Resultados encontrados: '
+                                   //  + RS.Fields.Item("ID")+ 
+                                   // RS.Fields.Item("long") +
+                                   // RS.Fields.Item("lat")+ 
+                                   //RS.Fields.Item("name")+
+                                   //RS.Fields.Item("Description") );
+
+</script>
+
+
+  <body>
+    <h1>Here map</h1>
+      <p>Esta documentação tem a intenção de demonstrar como utilizar uma API - Javascript<br>
+      Executando consulta em uma tabela com informações, marcar a localização de uma determinada área puxando as informações de um arcquivo access como forma de armazenamento.
+    </p>
+    <p>Foi utulizando a ferramenta de mapa developer.here</p>
+    developer.here.com
+    <br>
+    Ferramenta com uma licenssa gratuita, o mesmo pode ser aplicado a qualquer api de mapa.
+
+    <div id="map" style="width:900px; height: 600px; background: grey"></div>
+
+
+    <script type="text/javascript" src='js/app.js'></script>
+    
+    <div id="divResultado">
+    </div>
+
+  </body>
+</html>

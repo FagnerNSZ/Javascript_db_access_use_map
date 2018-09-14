@@ -1,0 +1,33 @@
+<html>
+<head>
+<!-- SCRIPTS -->
+
+      <script type="text/javascript">
+
+     var myConnect = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\\v_teste_map\\db_teste.mdb;Jet OLEDB:Database Password=123456";
+                                    var ConnectObj = new ActiveXObject("ADODB.Connection");
+                                    var RS = new ActiveXObject("ADODB.Recordset");
+                                    var sql = "SELECT  * FROM   map";
+                                    ConnectObj.Open (myConnect);
+                                    RS.Open(sql,ConnectObj);
+                                    //alert('Resultados encontrados: ' + RS.Fields.Count );
+                                  //  alert('Resultados encontrados: '
+                                     //  + RS.Fields.Item("ID")+ 
+                                        // RS.Fields.Item("long") +
+                                        // RS.Fields.Item("lat")+ 
+                                        // RS.Fields.Item("name"));
+   
+
+
+
+
+    </script>
+
+
+</head>
+<body >
+    
+
+treta
+
+</body>

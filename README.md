@@ -9,17 +9,15 @@ Construi essa pequena pagina html para demonstrar como usar Javascript pra acess
 * Descompactar na pasta C:/ 
 
 Ferramenta de mapa:
+Google map API 
+
+
 Para conseguir uma chave free basta executar o cadastro no site.
-https://developer.here.com
+https://code.google.com/archive/p/google-maps-utility-library-v3/
 
-Chave free:
+<wiki:gadget url="http://www.ohloh.net/p/google-maps-utility-library-v3/widgets/project_basic_stats.xml" height="240" width="350" border="0" />
 
-*App ID: HSWdRZNfGj5Jd5uT5xkp
 
-*App Code: 0MCGh0g5KdThHE_mfIYDMQ
-
-Documentação da API:
-* https://developer.here.com/documentation/maps/topics/markers.html
 
 Como configurar ODBC:
 Isso serve pra qualquer versão más e necessario saber qual a versão que tem instalado na sua maquina, todo pacote Office já vem com o instalador. Independente disso pode instalar de forma independente pra isso basta acessar o site da empresa responsavel pela ferramenta e baixar o instalador mais adequado as suas necessidades. 

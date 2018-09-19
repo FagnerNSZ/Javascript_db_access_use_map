@@ -11,6 +11,7 @@ Construí essa pequena pagina html para demonstrar como usar Javascript pra aces
 #Ferramenta de mapa:
 Google map API : google-maps-utility-library-v3
 https://code.google.com/archive/p/google-maps-utility-library-v3/
+License: Apache License 2.0
 
 
 

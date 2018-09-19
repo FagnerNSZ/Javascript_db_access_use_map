@@ -1,5 +1,5 @@
 # Javascript_db_access_use_map
-Construí essa pequena pagina html para demonstrar como usar Javascript pra acessar banco de daos ACCESS e exibir os dados marcados em um mapa.
+Construí essa pequena página html para demonstrar como usar Javascript pra acessar banco de daos ACCESS e exibir os dados marcados em um mapa, mostrar descrição em uma label.
 
 
 #Requisitos:

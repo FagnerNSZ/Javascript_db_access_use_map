@@ -1,5 +1,5 @@
 # Javascript_db_access_use_map
-Construi essa pequena pagina html para demonstrar como usar Javascript pra acessar banco de daos ACCESS e exibir os dados marcados em um mapa.
+Construí essa pequena pagina html para demonstrar como usar Javascript pra acessar banco de daos ACCESS e exibir os dados marcados em um mapa.
 
 
 #Requisitos:
@@ -8,14 +8,9 @@ Construi essa pequena pagina html para demonstrar como usar Javascript pra acess
 * Plataforma Windows
 * Descompactar na pasta C:/ 
 
-Ferramenta de mapa:
-Google map API 
-
-
-Para conseguir uma chave free basta executar o cadastro no site.
+#Ferramenta de mapa:
+Google map API : google-maps-utility-library-v3
 https://code.google.com/archive/p/google-maps-utility-library-v3/
-
-<wiki:gadget url="http://www.ohloh.net/p/google-maps-utility-library-v3/widgets/project_basic_stats.xml" height="240" width="350" border="0" />
 
 
 

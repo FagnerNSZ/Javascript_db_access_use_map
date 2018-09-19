@@ -10,7 +10,9 @@ Construí essa pequena página html para demonstrar como usar Javascript pra ace
 
 #Ferramenta de mapa:
 Google map API : google-maps-utility-library-v3
+<br>
 https://code.google.com/archive/p/google-maps-utility-library-v3/
+<br>
 License: Apache License 2.0
 
 

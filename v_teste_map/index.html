@@ -1,57 +1,27 @@
+
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Map</title>
-    <style>
-      body {
-        font-size: 83%;
-      }
-      body, input, textarea {
-        font-family: arial, sans-serif;
-      }
-      #map {
-        width: 600px;
-        height: 500px;
-      }
-      #styles, #add-tab {
-        float: left;
-        margin-top: 10px;
-        width: 400px;
-      }
-      #styles label,
-      #add-tab label {
-        display: inline-block;
-        width: 130px;
-      }
-      .phoney {
-        background: -webkit-gradient(linear,left top,left bottom,color-stop(0, rgb(112,112,112)),color-stop(0.51, rgb(94,94,94)),color-stop(0.52, rgb(57,57,57)));
-        background: -moz-linear-gradient(center top,rgb(112,112,112) 0%,rgb(94,94,94) 51%,rgb(57,57,57) 52%);
-      }
-      .phoneytext {
-        text-shadow: 0 -1px 0 #000;
-        color: #fff;
-        font-family: Helvetica Neue, Helvetica, arial;
-        font-size: 16px;
-        line-height: 25px;
-        padding: 4px 45px 4px 15px;
-        font-weight: bold;
-        background: url(../images/arrow.png) 95% 50% no-repeat;
-      }
-      .phoneytab {
-        text-shadow: 0 -1px 0 #000;
-        color: #fff;
-        font-family: Helvetica Neue, Helvetica, arial;
-        font-size: 18px;
-        background: rgb(112,112,112) !important;
-      }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="bootstrap-4.0.0/assets/favicon/favicon.ico">
 
-<script>
-  
 
-</script>
-    <script src="https://maps.googleapis.com/maps/api/js"></script>
+
+    <title>Checkout example for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap-4.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="form-validation.css" rel="stylesheet">
+    <link href="style/map_style.css" rel="stylesheet">    
+    <script src="script_js/map_script.js"></script>
+
+
+<script src="https://maps.googleapis.com/maps/api/js"></script>
     <script>
       var script = '<script src="src/infobubble';
       if (document.location.search.indexOf('compiled') !== -1) {
@@ -60,13 +30,9 @@
       script += '.js"><' + '/script>';
       document.write(script);
     </script>
-
-
     <script>
-
-
-
       var map, infoBubble, infoBubble2;
+
       function init() {
 
 
@@ -82,153 +48,34 @@
                                     // RS.Fields.Item("lat")+ 
                                     // RS.Fields.Item("name")*/
         //Define localização inicial do mapa 
-        var mapCenter = new google.maps.LatLng(RS.Fields.Item("lat"), RS.Fields.Item("long"));
+        //var mapCenter = new google.maps.LatLng(RS.Fields.Item("lat"), RS.Fields.Item("long"));
+
+
+        var mapCenter = new google.maps.LatLng(-35.397, 150.644);
         map = new google.maps.Map(document.getElementById('map'), {
           zoom: 8,
           center: mapCenter,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         });
-        //Define marcação no mapa
-      
+
         var marker = new google.maps.Marker({
           map: map,
           position: new google.maps.LatLng(RS.Fields.Item("lat"), RS.Fields.Item("long")),
-          draggable: true
+          draggable: true,
+          title: 'teste'
         });
 
+           
+  addMarkerInMap(RS.Fields.Item("lat"), RS.Fields.Item("long"));
+            
 
-        var title_ ="Projeto "+RS.Fields.Item("name");
-        var contentString = '<div id="content">'+
-        '<h1>'+RS.Fields.Item("name")+'</h1>'+
-        '<p>'+RS.Fields.Item("description")+'</p>'+
-        '<p>*Status da obra:'+RS.Fields.Item("status_obra")+'</p>'+
-        '<p>*Atributos:'+RS.Fields.Item("atributos_obra")+'</p>'+
-        '</div>';
-
-        infoBubble = new InfoBubble({
-          maxWidth: 300
-        });
-
-        infoBubble2 = new InfoBubble({
-          map: map,
-          content: '<div class="phoneytext">Customização</div>',
-          position: new google.maps.LatLng(RS.Fields.Item("lat"), RS.Fields.Item("long")),
-          shadowStyle: 1,
-          padding: 0,
-          backgroundColor: 'rgb(57,57,57)',
-          borderRadius: 4,
-          arrowSize: 10,
-          borderWidth: 1,
-          borderColor: '#2c2c2c',
-          disableAutoPan: true,
-          hideCloseButton: true,
-          arrowPosition: 30,
-          backgroundClassName: 'phoney',
-          arrowStyle: 2
-        });
-
-        infoBubble.open(map, marker);
-        infoBubble2.open();
-
-        var div = document.createElement('DIV');
-        div.innerHTML = 'Hello';
-
-        //infoBubble.addTab('Projeto', div);
-        infoBubble.addTab(title_, contentString);
-
-        google.maps.event.addListener(marker, 'click', function() {
-          if (!infoBubble.isOpen()) {
-            infoBubble.open(map, marker);
-          }
-        });
-
-        google.maps.event.addDomListener(document.getElementById('update'),
-            'click', updateStyles);
-        google.maps.event.addDomListener(document.getElementById('add'),
-            'click', addTab);
-        google.maps.event.addDomListener(document.getElementById('update-tab'),
-            'click', updateTab);
-        google.maps.event.addDomListener(document.getElementById('remove'),
-            'click', removeTab);
-        google.maps.event.addDomListener(document.getElementById('open'),
-            'click', function() {
-            infoBubble2.open();
-        });
-        google.maps.event.addDomListener(document.getElementById('close'),
-            'click', function() {
-          infoBubble2.close();
-        });
+insertProject();
+//alert(getElementById())
 
       }
       google.maps.event.addDomListener(window, 'load', init);
 
-      function updateStyles() {
-        var shadowStyle = document.getElementById('shadowstyle').value;
-        infoBubble.setShadowStyle(shadowStyle);
-
-        var padding = document.getElementById('padding').value;
-        infoBubble.setPadding(padding);
-
-        var borderRadius = document.getElementById('borderRadius').value;
-        infoBubble.setBorderRadius(borderRadius);
-
-        var borderWidth = document.getElementById('borderWidth').value;
-        infoBubble.setBorderWidth(borderWidth);
-
-        var borderColor = document.getElementById('borderColor').value;
-        infoBubble.setBorderColor(borderColor);
-
-        var backgroundColor = document.getElementById('backgroundColor').value;
-        infoBubble.setBackgroundColor(backgroundColor);
-
-        var maxWidth = document.getElementById('maxWidth').value;
-        infoBubble.setMaxWidth(maxWidth);
-
-        var maxHeight = document.getElementById('maxHeight').value;
-        infoBubble.setMaxHeight(maxHeight);
-
-        var minWidth = document.getElementById('minWidth').value;
-        infoBubble.setMinWidth(minWidth);
-
-        var minHeight = document.getElementById('minHeight').value;
-        infoBubble.setMinHeight(minHeight);
-
-        var arrowSize = document.getElementById('arrowSize').value;
-        infoBubble.setArrowSize(arrowSize);
-
-        var arrowPosition = document.getElementById('arrowPosition').value;
-        infoBubble.setArrowPosition(arrowPosition);
-
-        var arrowStyle = document.getElementById('arrowStyle').value;
-        infoBubble.setArrowStyle(arrowStyle);
-
-        var closeSrc = document.getElementById('closeSrc').value;
-        infoBubble.setCloseSrc(closeSrc);
-      }
-
-      function addTab() {
-        var title = document.getElementById('tab-title').value;
-        var content = document.getElementById('tab-content').value;
-
-        if (title !== '' && content !== '') {
-          infoBubble.addTab(title, content);
-        }
-      }
-
-      function updateTab() {
-        var index = document.getElementById('tab-index-update').value;
-        var title = document.getElementById('tab-title-update').value;
-        var content = document.getElementById('tab-content-update').value;
-
-        if (index) {
-          infoBubble.updateTab(index, title, content);
-        }
-      }
-
-      function removeTab() {
-        var index = document.getElementById('tab-index').value;
-        infoBubble.removeTab(index);
-      }
+     
     </script>
     <script>
       var _gaq = _gaq || [];
@@ -241,103 +88,366 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
     </script>
-  </head>
-  <body>
-    <h3>Customização de Info Bubble</h3>
-    <p>
-      Foi implementado pra demonstrar como pode ser simples enviar ações utilizando API Google Maps
-    <div id="map" style="float: left;"></div>
-    <div id="styles" style="padding:0 0 0 10px; background-color: ">
-      <h2>Mude o Style</h2>
-      <div>
-        <label>ShadowStyle:</label>
-        <select id="shadowstyle">
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-        </select>
+<script>Alerta();</script>
+
+
+
+<script type="text/javascript">
+  $(window).load(function() {
+      $('#exemplomodal').modal('show');
+  });
+</script>
+<script>
+$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})  
+</script>
+
+
+
+
+</head>
+
+  <body class="bg-light">
+
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal 1 -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Projetos</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-      <div>
-        <label>Padding:</label>
-        <input type="text" id="padding" value="10"/>
+      <div class="modal-body">
+        <div class="col-md-8 order-md-1">
+            <h4 class="mb-3">Cadastro de projeto</h4>
+            <form class="needs-validation" novalidate>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                    
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Salvar</button>
       </div>
-      <div>
-        <label>borderRadius:</label>
-        <input type="text" id="borderRadius" value="10"/>
-      </div>
-      <div>
-        <label>borderWidth:</label>
-        <input type="text" id="borderWidth" value="1"/>
-      </div>
-      <div>
-        <label>borderColor:</label>
-        <input type="text" id="borderColor" value="#ccc"/>
-      </div>
-      <div>
-        <label>backgroundColor:</label>
-        <input type="text" id="backgroundColor" value="#fff"/>
-      </div>
-      <div>
-        <label>minWidth:</label>
-        <input type="text" id="minWidth"/>px
-      </div>
-      <div>
-        <label>maxWidth:</label>
-        <input type="text" id="maxWidth" value="300"/>px
-      </div>
-      <div>
-        <label>minHeight:</label>
-        <input type="text" id="minHeight"/>px
-      </div>
-      <div>
-        <label>maxHeight:</label>
-        <input type="text" id="maxHeight"/>px
-      </div>
-      <div>
-        <label>arrowSize:</label>
-        <input type="text" id="arrowSize" value="15"/>px
-      </div>
-      <div>
-        <label>arrowPosition:</label>
-        <input type="text" id="arrowPosition" value="50"/>%
-      </div>
-      <div>
-        <label>arrowStyle:</label>
-        <select id="arrowStyle">
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-        </select>
-      </div>
-      <div>
-        <label>closeSrc:</label>
-        <input type="text" id="closeSrc" value="https://maps.gstatic.com/intl/en_us/mapfiles/iw_close.gif"/>
-      </div>
-      <button id="update">Update styles</button>
+    </div>
+  </div>
+</div>
+
+<div class="pos-f-t">
+  <div class="collapse" id="navbarToggleExternalContent">
+    <div class="bg-dark p-4">
+      <h4 class="text-white">Dashboard - Controle de regiões</h4>
+      <img src="img/logo01.jpg" width="30" class="d-inline-block align-top" alt="">
+      <span class="text-muted">Consulte informações de regiões </span><br><br>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Projetos</button>  
+      <button type="button" class="btn btn-primary construcao" data-toggle="modal" data-target="#exemplomodal">Almoxarifado</button>
+      <button type="button" class="btn btn-primary construcao" data-toggle="modal" data-target="#exemplomodal">Acompanhamento</button>
+      <button type="button" class="btn btn-primary construcao" data-toggle="modal" data-target="#exemplomodal">Movimentos</button>
     </div>
 
-    <div id="add-tab">
-      <h2>Add Tab</h2>
-      Permite adicionar novas abas a caixa no mapa
-      <div><label>Title:</label><input type="text" id="tab-title"/></div>
-      <div><label>Content:</label><textarea id="tab-content"></textarea></div>
-      <button id="add">Add</button>
 
-      <h2>Update Tab</h2>
-      Atualiza tab
-      <div><label>Index:</label><input type="text" id="tab-index-update"/></div>
-      <div><label>Title:</label><input type="text" id="tab-title-update"/></div>
-      <div><label>Content:</label><textarea id="tab-content-update"></textarea></div>
-      <button id="update-tab">Update</button>
 
-      <h2>Remove Tab</h2>
-      <div><label>Index:</label><input type="text" id="tab-index"/></div>
-      <button id="remove">Remove</button>
+  </div>
+  <nav class="navbar navbar-dark bg-dark">
 
-  	  <h2>Custon Info Bubble</h2>
-      <button id="open">Open</button>
-      <button id="close">Close</button>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+
+    </button>
+
+      <a class="navbar-brand" href="#">
+        Dashboard
+          <img src="img/logo01.jpg" width="30" class="d-inline-block align-top" alt="">
+      </a>
+
+
+
+  </nav>
+
+</div>
+
+
+
+
+<div class="pos-f-t">
+
+  <!-- Mapa -->
+  <div id="map"></div>    
+</div>
+
+
+
+
+<!-- Modal cadastro -->
+<div class="modal fade" id="exemplomodal" tabindex="-1" role="dialog" aria-
+ labelledby="myLargeModalLabel">
+<div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="gridSystemModalLabel"></h4>
+        </div>
+        <div class="modal-body">
+            Cadastro de projeto
+             <div class="row">
+        <div class="col-md-4 order-md-2 mb-4">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">Your cart</span>
+            <span class="badge badge-secondary badge-pill">3</span>
+          </h4>
+          <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Product name</h6>
+                <small class="text-muted">Brief description</small>
+              </div>
+              <span class="text-muted">$12</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Second product</h6>
+                <small class="text-muted">Brief description</small>
+              </div>
+              <span class="text-muted">$8</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Third item</h6>
+                <small class="text-muted">Brief description</small>
+              </div>
+              <span class="text-muted">$5</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between bg-light">
+              <div class="text-success">
+                <h6 class="my-0">Promo code</h6>
+                <small>EXAMPLECODE</small>
+              </div>
+              <span class="text-success">-$5</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Total (USD)</span>
+              <strong>$20</strong>
+            </li>
+          </ul>
+
+          <form class="card p-2">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Promo code">
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-secondary">Redeem</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-8 order-md-1">
+          <h4 class="mb-3">Billing address</h4>
+          <form class="needs-validation" novalidate>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="firstName">First name</label>
+                <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                <div class="invalid-feedback">
+                  Valid first name is required.
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="lastName">Last name</label>
+                <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                <div class="invalid-feedback">
+                  Valid last name is required.
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="username">Username</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">@</span>
+                </div>
+                <input type="text" class="form-control" id="username" placeholder="Username" required>
+                <div class="invalid-feedback" style="width: 100%;">
+                  Your username is required.
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="email">Email <span class="text-muted">(Optional)</span></label>
+              <input type="email" class="form-control" id="email" placeholder="you@example.com">
+              <div class="invalid-feedback">
+                Please enter a valid email address for shipping updates.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="address">Address</label>
+              <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+              <div class="invalid-feedback">
+                Please enter your shipping address.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
+              <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+            </div>
+
+            <div class="row">
+              <div class="col-md-5 mb-3">
+                <label for="country">Country</label>
+                <select class="custom-select d-block w-100" id="country" required>
+                  <option value="">Choose...</option>
+                  <option>United States</option>
+                </select>
+                <div class="invalid-feedback">
+                  Please select a valid country.
+                </div>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="state">State</label>
+                <select class="custom-select d-block w-100" id="state" required>
+                  <option value="">Choose...</option>
+                  <option>California</option>
+                </select>
+                <div class="invalid-feedback">
+                  Please provide a valid state.
+                </div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="zip">Zip</label>
+                <input type="text" class="form-control" id="zip" placeholder="" required>
+                <div class="invalid-feedback">
+                  Zip code required.
+                </div>
+              </div>
+            </div>
+            <hr class="mb-4">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="same-address">
+              <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="save-info">
+              <label class="custom-control-label" for="save-info">Save this information for next time</label>
+            </div>
+            <hr class="mb-4">
+
+            <h4 class="mb-3">Payment</h4>
+
+            <div class="d-block my-3">
+              <div class="custom-control custom-radio">
+                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+                <label class="custom-control-label" for="credit">Credit card</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
+                <label class="custom-control-label" for="debit">Debit card</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
+                <label class="custom-control-label" for="paypal">Paypal</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="cc-name">Name on card</label>
+                <input type="text" class="form-control" id="cc-name" placeholder="" required>
+                <small class="text-muted">Full name as displayed on card</small>
+                <div class="invalid-feedback">
+                  Name on card is required
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="cc-number">Credit card number</label>
+                <input type="text" class="form-control" id="cc-number" placeholder="" required>
+                <div class="invalid-feedback">
+                  Credit card number is required
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3 mb-3">
+                <label for="cc-expiration">Expiration</label>
+                <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+                <div class="invalid-feedback">
+                  Expiration date required
+                </div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="cc-expiration">CVV</label>
+                <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+                <div class="invalid-feedback">
+                  Security code required
+                </div>
+              </div>
+            </div>
+            <hr class="mb-4">
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+          </form>
+        </div>
+
+
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Salvar</button>
       
+        </div>
+
+
     </div>
+</div>
+
+
+
+
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="bootstrap-4.0.0/assets/js/vendor/popper.min.js"></script>
+    <script src="bootstrap-4.0.0/dist/js/bootstrap.min.js"></script>
+    <script src="bootstrap-4.0.0/assets/js/vendor/holder.min.js"></script>
+    <script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function() {
+        'use strict';
+
+        window.addEventListener('load', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+    </script>
+
+
+
   </body>
 </html>
